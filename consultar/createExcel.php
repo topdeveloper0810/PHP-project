@@ -10,8 +10,6 @@ $nameCliente = $_POST['nameCliente'];
 $create_date = $_POST['create_date'];
 $data = $_POST['data'];
 
-// var_dump($data);
-
 function is_serialized($value)
 {
 	if (!is_string($value)) {
@@ -24,8 +22,6 @@ function is_serialized($value)
 if (isset($data)) {
 	if (is_serialized($data)) {
 		$dataArrPath = unserialize($data);
-		// var_dump($dataArrPath);
-		// Proceed with $dataArrPath
 	} else {
 		var_dump('The provided data is not a valid serialized string.');
 	}
@@ -35,7 +31,6 @@ require_once '../functionsExcel/excel.php';
 require_once '../PHPExcel/Classes/PHPExcel.php';
 
 $objPHPExcel = new PHPExcel();
-// $objPHPExcelStyle = new PHPExcel_Style(); //nuevo estilo
 
 // Set document properties
 $objPHPExcel->getProperties()->setCreator("Developero")
@@ -87,16 +82,13 @@ $i = 2;
 $j = -1;
 $moni = "";
 array_unshift($arrPath, "");
-// var_dump($arrPath);
 
 foreach ($arrPath as  $arc) {
 	$objDrawing[$arc] = new PHPExcel_Worksheet_Drawing();
 
 	if ($i == 2) {
 		$objDrawing[$arc]->setPath("../images/logo.png");
-		//Establecer la altura de ancho
 		$objDrawing[$arc]->setHeight(200); // Altura de la foto
-		// $Objdrawing[$arc]->Setheight(80); // Altura de la foto
 		$objDrawing[$arc]->setWidth(400); // Ancho de la foto
 
 		$objDrawing[$arc]->setCoordinates('A' . $i);
@@ -124,7 +116,6 @@ foreach ($arrPath as  $arc) {
 			$objPHPExcel->getActiveSheet()->SetCellValue("C" . $i, $arrHora[$j]);
 		}
 
-		//Establecer la altura de ancho
 		$objDrawing[$arc]->setHeight(150); // Altura de la foto
 		$objDrawing[$arc]->setWidth(195); // Ancho de la foto
 
